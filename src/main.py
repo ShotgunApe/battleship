@@ -3,8 +3,6 @@ import utils.ships as Ship
 import utils.board as Board
 import utils.game as Game
 
-import random
-
 def main():
     # Create Board object - Board(size)
     board = Board.Board(10)
@@ -15,9 +13,15 @@ def main():
         ships.append(Ship.Ship(i))
     
     # Generate ship coords
+    board.randomizeShips(ships)
+    
+    # Configure board state
     for ship in ships:
-        ship.setCoords((random.randint(0, 9), random.randint(0, 9)))
-        print(ship.display())
+        board.setState(ship.getCoords())
+
+    board.display()
+
+    # Create game state + begin loop
 
 if __name__ == "__main__":
     main()
